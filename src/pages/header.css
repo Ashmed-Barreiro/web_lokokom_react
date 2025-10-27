@@ -1,0 +1,17 @@
+a{
+    padding: 1%;
+    color: black;
+    border: 1px solid white;
+    border-radius: 14px;
+    background-color: rgb(54, 54, 54);
+    
+
+}
+a:hover{
+    color: red;
+}
+.menu_options{
+    display: flex;
+    justify-content:flex-end;
+    
+}
