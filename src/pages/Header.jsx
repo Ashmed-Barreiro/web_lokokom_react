@@ -1,15 +1,20 @@
-import React from "react"
-import './header.css'
+import React from "react";
+import "./header.css";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
-const Header = () => (
-  <div>
-    <nav className="menu_options">
-      <Link to="/collections">Collections</Link>
-      <Link to="">Contlinkct</Link>
-      <Link to="">Items</Link>
-    </nav>
-  </div>
-);
+export default function Header() {
+  const { totals } = useCart();
 
-export default Header;
+  return (
+    <header className="header">
+      <nav className="menu_options">
+        <Link to="/">Home</Link>
+        <Link to="/collections">Collections</Link>
+        <Link to="/items">Shop</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/cart">Carrito ({totals.count})</Link>
+      </nav>
+    </header>
+  );
+}

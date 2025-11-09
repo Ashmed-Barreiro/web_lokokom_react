@@ -4,25 +4,26 @@ import Header from "./pages/Header";
 import Collections from "./pages/collections";
 import Contact from "./pages/contact";
 import Items from "./pages/items";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import { CartProvider } from "./context/CartContext";
+import "./App.css";
 
-class App extends React.Component {
-  render() {
-    return (
-      <Router>
+export default function App() {
+  return (
+    <Router>
+      <CartProvider>
         <div className="todo">
-      
           <Header />
-          <h1>Web Lokokom</h1>
-
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/collections" element={<Collections />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/items" element={<Items />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </div>
-      </Router>
-    );
-  }
+      </CartProvider>
+    </Router>
+  );
 }
-
-export default App;
