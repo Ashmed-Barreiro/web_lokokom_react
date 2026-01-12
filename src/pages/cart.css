@@ -49,6 +49,8 @@
     display: grid;
     gap: 6px;
     justify-items: end;
+    text-decoration: white;
+    background-color: white;
 }
 
 .cart__remove {
@@ -75,4 +77,7 @@
     background: #1c1c1c;
     color: #fff;
     cursor: pointer;
+}
+.cart_subtotal{
+    color: white;
 }

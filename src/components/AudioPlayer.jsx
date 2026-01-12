@@ -1,5 +1,5 @@
 import React from "react";
-import "./AudioPlayer.css";
+import "./Audioplayer.css";
 
 export default function AudioPlayer() {
     return <>

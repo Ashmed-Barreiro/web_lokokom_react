@@ -49,7 +49,7 @@ export default function Cart() {
                     <span>Artículos:</span>
                     <strong>{totals.count}</strong>
                 </div>
-                <div>
+                <div className="cart_subtotal">
                     <span>Subtotal:</span>
                     <strong>{totals.subtotal.toFixed(2)} €</strong>
                 </div>
