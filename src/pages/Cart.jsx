@@ -23,7 +23,7 @@ export default function Cart() {
                     <li key={key} className="cart__item">
                         <img src={product.image} alt={product.name} />
                         <div className="cart__meta">
-                            <strong>{product.name}</strong>
+                            <strong className="cart_title">{product.name}</strong>
                             <span>{product.price.toFixed(2)} €</span>
                             <div className="cart__qty">
                                 <button onClick={() => dispatch({ type: "DEC", key })}>−</button>

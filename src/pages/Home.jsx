@@ -7,7 +7,7 @@ export default function Home() {
         <section className="home">
             <div className="home__card">
                 <h1>LOKOKOM</h1>
-                <p>Ropa con actitud. Calidad-precio 🔥</p>
+                <p className="card_title">Ropa con actitud. Calidad-precio 🔥</p>
                 <Link to="/items" className="home__cta">Ver catálogo</Link>
             </div>
         </section>

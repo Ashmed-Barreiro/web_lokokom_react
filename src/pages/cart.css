@@ -2,6 +2,10 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 1rem;
+    color: white;
+}
+.cart_title{
+    color:white;
 }
 
 .cart__list {

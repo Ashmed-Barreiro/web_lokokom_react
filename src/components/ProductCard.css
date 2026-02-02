@@ -22,11 +22,13 @@
 .card__title {
     margin: 0;
     font-size: 1rem;
+    color: white;
 }
 
 .card__price {
     margin: 0;
     opacity: 0.85;
+    color: wheat;
 }
 
 .card__btn {
