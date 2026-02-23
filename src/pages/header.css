@@ -7,12 +7,20 @@
     padding: 10px 12px;
     background: rgba(20, 20, 20, 0.75);
     z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
 }
 
 .menu_options {
     display: flex;
     gap: 10px;
-    justify-content: flex-end;
 }
 
 .menu_options a {
@@ -27,4 +35,37 @@
 .menu_options a:hover {
     border-color: #888;
     color: #ff5a5a;
+}
+
+.header__toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* MEDIA QUERY PARA MÓVIL */
+@media (max-width: 700px) {
+    .header__toggle {
+        display: block;
+    }
+
+    .menu_options {
+        display: none;
+        flex-direction: column;
+        gap: 8px;
+        position: absolute;
+        top: 60px;
+        right: 12px;
+        background: rgba(20, 20, 20, 0.95);
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #444;
+    }
+
+    .menu_options.active {
+        display: flex;
+    }
 }

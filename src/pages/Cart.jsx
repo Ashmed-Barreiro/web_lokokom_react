@@ -46,12 +46,12 @@ export default function Cart() {
 
             <div className="cart__summary">
                 <div>
-                    <span>Artículos:</span>
+                    <span>Artículos: </span>
                     <strong>{totals.count}</strong>
                 </div>
                 <div className="cart_subtotal">
-                    <span>Subtotal:</span>
-                    <strong>{totals.subtotal.toFixed(2)} €</strong>
+                    <span>Subtotal: </span>
+                    <strong>{totals.subtotal.toFixed(2)}€</strong>
                 </div>
                 <button className="cart__checkout" onClick={() => alert("Ojala vender XD")}>
                     Finalizar compra
