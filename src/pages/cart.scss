@@ -1,162 +1,189 @@
-@import '../../global\ _variables.scss';
+@import '../../globalVariables.scss';
+
+/* -----------------------------
+   CONDICIONAL SASS
+--------------------------------*/
+
+@if $dark-mode == true {
+  $card-bg: $secondary-color;
+} @else {
+  $card-bg: #f5f5f5;
+}
+
+/* -----------------------------
+   BASE MOBILE FIRST (375px)
+--------------------------------*/
 
 .cart {
   width: 100%;
-  max-width: 600px;
-  margin: $spacing-lg auto;
   padding: $spacing-md;
   background-color: $background-color;
   color: $text-color;
   font-family: $font-base;
   font-size: $font-size-base;
-  border-radius: $border-radius;
+
+  /* nitidez */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 
   h1 {
-    font-size: $font-size-large;
+    font-size: $font-size-lg;
     margin-bottom: $spacing-md;
   }
 
   p {
-    margin-bottom: $spacing-md;
+    font-size: $font-size-sm;
   }
 
-  .cart__list {
+  &__list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
+  }
 
-    .cart__item {
-      display: flex;
-      flex-direction: column;
-      gap: $spacing-sm;
-      padding: $spacing-sm;
-      border: 1px solid $border-color;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    border-radius: $border-radius;
+    background-color: $card-bg;
+    border: 1px solid $border-color;
+
+    img {
+      width: 100%;
+      max-width: 8rem;
       border-radius: $border-radius;
-      background-color: $secondary-color;
+    }
+  }
 
-      img {
-        width: 100%;
-        max-width: 120px;
-        object-fit: cover;
-        border-radius: $border-radius;
-      }
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
 
-      .cart__meta {
-        display: flex;
-        flex-direction: column;
-        gap: $spacing-xs;
+  &__qty {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
 
-        .cart_title {
-          font-weight: bold;
-          font-size: $font-size-base;
-        }
+    button {
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius;
+      border: none;
+      cursor: pointer;
+      background-color: $primary-color;
+      color: $text-color;
+      transition: 0.3s ease;
 
-        .cart__qty {
-          display: flex;
-          align-items: center;
-          gap: $spacing-xs;
-
-          button {
-            padding: $spacing-xs $spacing-sm;
-            border-radius: $border-radius;
-            border: none;
-            background-color: $primary-color;
-            color: $text-color;
-            cursor: pointer;
-
-            &:hover {
-              background-color: darken($primary-color, 10%);
-            }
-          }
-
-          span {
-            width: 24px;
-            text-align: center;
-          }
-        }
-      }
-
-      .cart__total {
-        margin-top: $spacing-xs;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .cart__remove {
-          padding: $spacing-xs $spacing-sm;
-          border-radius: $border-radius;
-          border: none;
-          background-color: $hover-color;
-          color: $text-color;
-          cursor: pointer;
-
-          &:hover {
-            background-color: darken($hover-color, 10%);
-          }
-        }
+      &:hover {
+        transform: scale(1.05);
       }
     }
   }
 
-  .cart__summary {
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $spacing-sm;
+  }
+
+  &__remove {
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $text-color;
+    }
+  }
+
+  &__summary {
     margin-top: $spacing-lg;
     display: flex;
     flex-direction: column;
     gap: $spacing-sm;
+  }
 
-    div {
-      display: flex;
-      justify-content: space-between;
-    }
+  &__checkout {
+    padding: $spacing-sm;
+    border-radius: $border-radius;
+    border: none;
+    background-color: $primary-color;
+    color: $text-color;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
 
-    .cart__checkout {
-      margin-top: $spacing-md;
-      padding: $spacing-sm $spacing-md;
-      border-radius: $border-radius;
-      border: none;
-      background-color: $primary-color;
-      color: $text-color;
-      font-weight: bold;
-      cursor: pointer;
-
-      &:hover {
-        background-color: darken($primary-color, 10%);
-      }
+    &:hover {
+      opacity: 0.9;
     }
   }
 }
 
-/* MEDIA QUERY DESKTOP (>700px) */
-@media (min-width: 700px) {
-  .cart__list {
-    .cart__item {
-      flex-direction: row;
-      align-items: center;
-      gap: $spacing-md;
+/* -----------------------------
+   BUCLE SASS (Genera utilidades)
+--------------------------------*/
 
-      img {
-        width: 100px;
-        height: 100px;
-      }
+@for $i from 1 through 3 {
+  .margin-#{$i} {
+    margin: #{$i}rem;
+  }
+}
 
-      .cart__meta {
-        flex: 1;
-      }
+/* -----------------------------
+   TABLET (768px)
+--------------------------------*/
 
-      .cart__total {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: $spacing-xs;
-      }
-    }
+@media (min-width: 48rem) {
+
+  .cart__item {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .cart__meta {
+    flex: 1;
   }
 
   .cart__summary {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+/* -----------------------------
+   DESKTOP (1024px)
+--------------------------------*/
+
+@media (min-width: 64rem) {
+
+  .cart {
+    max-width: 70rem;
+    margin: $spacing-xl auto;
+  }
+
+  .cart__list {
+    gap: $spacing-lg;
+  }
+
+  .cart__item {
+    padding: $spacing-lg;
+  }
+
+  .cart__checkout {
+    padding: $spacing-md $spacing-xl;
   }
 }
