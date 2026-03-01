@@ -1,88 +1,105 @@
-@import '../../globalVariables.scss';
-
-/* -----------------------------
-   CONDICIONAL SASS
---------------------------------*/
-
-@if $dark-mode == true {
-  $card-bg: $secondary-color;
-} @else {
-  $card-bg: #f5f5f5;
-}
-
-/* -----------------------------
-   BASE MOBILE FIRST (375px)
---------------------------------*/
+/* Cart.scss */
+@use "../../variables" as *;
 
 .cart {
   width: 100%;
-  padding: $spacing-md;
-  background-color: $background-color;
-  color: $text-color;
+  padding: $space-4;
+  background-color: $color-bg;
+  color: $color-text;
   font-family: $font-base;
-  font-size: $font-size-base;
+  font-size: $font-md;
 
   /* nitidez */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 
+  /* CONDICIONAL */
+  @if $use-soft-ui {
+    box-shadow: $shadow;
+  } @else {
+    border: 1px solid $color-border;
+  }
+
   h1 {
-    font-size: $font-size-lg;
-    margin-bottom: $spacing-md;
+    font-size: $font-lg;
+    margin: 0 0 $space-4;
   }
 
   p {
-    font-size: $font-size-sm;
+    font-size: $font-sm;
+    margin: 0;
   }
 
   &__list {
     list-style: none;
     padding: 0;
     margin: 0;
+
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: $space-4;
   }
 
   &__item {
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
-    padding: $spacing-md;
-    border-radius: $border-radius;
-    background-color: $card-bg;
-    border: 1px solid $border-color;
+    gap: $space-3;
+
+    padding: $space-4;
+    border-radius: $radius;
+
+    /* condicional inline (sin variable nueva) */
+    @if $use-soft-ui {
+  background-color: $color-bg;
+} @else {
+  background-color: #f5f5f5;
+}
+
+    border: 1px solid $color-border;
+
+    @if $use-soft-ui {
+      box-shadow: $shadow;
+    }
 
     img {
       width: 100%;
       max-width: 8rem;
-      border-radius: $border-radius;
+      height: auto;
+      border-radius: $radius;
+      display: block;
     }
   }
 
   &__meta {
     display: flex;
     flex-direction: column;
-    gap: $spacing-xs;
+    gap: $space-2;
   }
 
   &__qty {
     display: flex;
     align-items: center;
-    gap: $spacing-xs;
+    gap: $space-2;
 
     button {
-      padding: $spacing-xs $spacing-sm;
-      border-radius: $border-radius;
-      border: none;
+      padding: $space-2 $space-3;
+      border-radius: $radius;
+      border: 1px solid transparent;
       cursor: pointer;
-      background-color: $primary-color;
-      color: $text-color;
-      transition: 0.3s ease;
+
+      background-color: $color-primary;
+      color: #fff;
+
+      transition: transform 0.2s ease, opacity 0.2s ease;
 
       &:hover {
         transform: scale(1.05);
+      }
+
+      &:focus {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
       }
     }
   }
@@ -91,63 +108,72 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: $spacing-sm;
+    margin-top: $space-3;
+    gap: $space-3;
   }
 
   &__remove {
     background-color: transparent;
-    border: 1px solid $primary-color;
-    color: $primary-color;
-    padding: $spacing-xs $spacing-sm;
-    border-radius: $border-radius;
+    border: 1px solid $color-primary;
+    color: $color-primary;
+
+    padding: $space-2 $space-3;
+    border-radius: $radius;
     cursor: pointer;
-    transition: 0.3s ease;
+
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 
     &:hover {
-      background-color: $primary-color;
-      color: $text-color;
+      background-color: $color-primary;
+      color: #fff;
+    }
+
+    &:focus {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
     }
   }
 
   &__summary {
-    margin-top: $spacing-lg;
+    margin-top: $space-5;
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: $space-3;
   }
 
   &__checkout {
-    padding: $spacing-sm;
-    border-radius: $border-radius;
-    border: none;
-    background-color: $primary-color;
-    color: $text-color;
-    font-weight: bold;
+    padding: $space-3 $space-4;
+    border-radius: $radius;
+    border: 1px solid transparent;
+
+    background-color: $color-primary;
+    color: #fff;
+
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.3s ease;
+
+    transition: background-color 0.2s ease, opacity 0.2s ease;
 
     &:hover {
-      opacity: 0.9;
+      background-color: $color-primary-dark;
+    }
+
+    &:focus {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
     }
   }
 }
 
-/* -----------------------------
-   BUCLE SASS (Genera utilidades)
---------------------------------*/
-
+/* BUCLE SASS */
 @for $i from 1 through 3 {
   .margin-#{$i} {
     margin: #{$i}rem;
   }
 }
 
-/* -----------------------------
-   TABLET (768px)
---------------------------------*/
-
-@media (min-width: 48rem) {
-
+/* TABLET (768px) */
+@media (min-width: $bp-md) {
   .cart__item {
     flex-direction: row;
     align-items: center;
@@ -164,26 +190,22 @@
   }
 }
 
-/* -----------------------------
-   DESKTOP (1024px)
---------------------------------*/
-
-@media (min-width: 64rem) {
-
+/* DESKTOP (1024px) */
+@media (min-width: $bp-lg) {
   .cart {
     max-width: 70rem;
-    margin: $spacing-xl auto;
+    margin: $space-5 auto;
   }
 
   .cart__list {
-    gap: $spacing-lg;
+    gap: $space-5;
   }
 
   .cart__item {
-    padding: $spacing-lg;
+    padding: $space-5;
   }
 
   .cart__checkout {
-    padding: $spacing-md $spacing-xl;
+    padding: $space-4 $space-5;
   }
 }
